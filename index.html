@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Image</title>
+</head>
+<body>
+    <canvas id="pdfCanvas" style="display: none;"></canvas> <!-- Hidden canvas for rendering -->
+    <img id="pdfImage" alt="Converted PDF Page" style="max-width: 100%; height: auto;">
+
+    <!-- Include PDF.js library -->
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <!-- Include the custom JavaScript file -->
+    <script src="pdf_to_png.js"></script>
+
+    <script>
+        // Call the function to load and convert the PDF
+        loadAndConvertPDF('cv.pdf', 'pdfCanvas', 'pdfImage');
+    </script>
+</body>
+</html>
