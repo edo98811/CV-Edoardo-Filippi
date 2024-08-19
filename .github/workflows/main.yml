@@ -1,11 +1,5 @@
 name: PDF to PNG
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 jobs:
   build:
@@ -21,17 +15,17 @@ jobs:
           RPL="rights=${DQT}read\|write${DQT} pattern=${DQT}PDF${DQT}"
           sudo sed -i "s/$SRC/$RPL/" /etc/ImageMagick-6/policy.xml
       - name: Convert PDF to PNG
-        run: convert -density 900 -background white -alpha off CV.pdf -quality 90 CV.png
+        run: convert -density 900 -background white -alpha off cv.pdf -quality 90 cv.png
       - name: Commit PNG
         id: commit
         run: |
           git config --local user.email "action[bot]@github.com"
           git config --local user.name "github-actions[bot]"
-          git add CV.png
+          git add cv.png
           if [-z "$(git status --porcelain)"]; then
             echo "::set-output name=push::false"
           else
-            git commit -m "[bot] updated CV.png"
+            git commit -m "[bot] updated cv.png"
             echo "::set-output name=push::true"
           fi
         shell: bash
