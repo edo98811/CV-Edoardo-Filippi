@@ -29,8 +29,7 @@ jobs:
             echo "::set-output name=push::true"
           fi
         shell: bash
-      - name: Push Commit
-        if: steps.commit.outputs.push == 'true'
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.SECRET_TOKEN }}
+      - name: Push Changes
+        run: git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
